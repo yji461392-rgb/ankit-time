@@ -1,7 +1,11 @@
+
 name: Build ANKIT TIME APK
 
 on:
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -22,28 +26,22 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Android SDK tools
+      - name: Install Android SDK
         run: |
           sudo apt-get update
           sudo apt-get install -y android-sdk
 
-      - name: Install Capacitor
-        run: |
-          npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
-
-      - name: Create test app
+      - name: Create test web app
         run: |
           mkdir www
-          echo '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body><h1>ANKIT TIME</h1><p>Test app</p></body></html>' > www/index.html
+          echo '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="background:#080e13;color:#53e8f4;font-family:Arial;text-align:center"><h1>ANKIT TIME</h1><p>Test APK</p></body></html>' > www/index.html
+          npm init -y
+          npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap init "ANKIT TIME" "com.ankittime.study" --web-dir www
           npx cap add android
           npx cap sync android
 
-      - name: Build APK
-        uses: android-actions/setup-android@v3
-
-      - name: Compile APK
+      - name: Build debug APK
         run: |
           cd android
           chmod +x gradlew
@@ -54,3 +52,4 @@ jobs:
         with:
           name: ANKIT-TIME-APK
           path: android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
