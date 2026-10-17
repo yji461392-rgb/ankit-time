@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ANKIT TIME — Premium Study Space</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#06101f;color:#f5f8ff;font-family:Arial,sans-serif}
+header{padding:22px 18px;background:#0a1b32;border-bottom:1px solid #24415f}
+.logo{font-size:26px;font-weight:900;letter-spacing:1px}
+.logo span{color:#52c5ff}
+.tag{font-size:11px;color:#9db7d4;letter-spacing:2px;margin-top:7px}
+main{max-width:900px;margin:auto;padding:18px}
+.hero{min-height:230px;padding:25px;border-radius:22px;background:linear-gradient(135deg,#153d66,#071426 75%);border:1px solid #28547c;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{font-size:11px;color:#66d2ff;letter-spacing:2px}
+h1{font-size:34px;line-height:1.1;margin:14px 0}
+p{color:#b8c9df;line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
+.card{background:#0b1b30;border:1px solid #1c3654;border-radius:18px;padding:17px;min-width:0}
+.card h2{font-size:16px;margin:0 0 10px}
+.big{font-size:29px;font-weight:bold;color:#63ceff;margin:10px 0}
+button,input,select{font:inherit}
+button{background:#3bb9f5;color:#061426;border:0;border-radius:11px;padding:12px 14px;font-weight:bold;cursor:pointer}
+button.secondary{background:#173653;color:#eaf7ff;border:1px solid #315777}
+input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #294663;background:#071426;color:white;margin:6px 0 10px}
+.full{width:100%}
+.task{display:flex;align-items:center;gap:9px;margin:12px 0;color:#d9e7f8}
+.task input{width:auto;margin:0}
+.bar{height:8px;background:#1a2f48;border-radius:9px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:#4ac7ff;transition:width .3s}
+.muted{font-size:12px;color:#93abc8}
+nav{display:flex;gap:8px;overflow:auto;padding:15px 0}
+nav button{white-space:nowrap}
+section{scroll-margin-top:12px;margin-top:18px}
+footer{text-align:center;color:#7894b5;font-size:12px;padding:28px 10px}
+@media(min-width:650px){.hero{padding:38px}h1{font-size:44px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}h1{font-size:29px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">ANKIT <span>TIME</span></div>
+  <div class="tag">YOUR TIME · YOUR VISION · YOUR FUTURE</div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="eyebrow">WELCOME TO ANKIT TIME</div>
+    <h1>Bolo Ankit ji,<br>aaj kya padhna hai?</h1>
+    <p>Plan your day. Focus on your goals. Build your future.</p>
+    <button onclick="speakGreeting()">🔊 Suno welcome message</button>
+  </section>
+
+  <nav>
+    <button onclick="go('timer')">Focus Timer</button>
+    <button onclick="go('targets')">Daily Targets</button>
+    <button onclick="go('timetable')">Timetable</button>
+    <button onclick="go('settings')">Settings</button>
+  </nav>
+
+  <div class="grid">
+    <section class="card" id="timer">
+      <h2>⏱ Focus Timer</h2>
+      <div class="big" id="clock">25:00</div>
+      <label class="muted" for="minutes">Focus minutes</label>
+      <input id="minutes" type="number" min="1" max="180" value="25">
+      <button onclick="startTimer()">Start</button>
+      <button class="secondary" onclick="pauseTimer()">Pause</button>
+      <button class="secondary" onclick="resetTimer()">Reset</button>
+      <p class="muted" id="timerStatus">Ready when you are.</p>
+    </section>
+
+    <section class="card" id="targets">
+      <h2>🎯 Daily Targets</h2>
+      <input id="targetInput" placeholder="e.g. Physics: 20 questions">
+      <button class="full" onclick="addTarget()">Add target</button>
+      <div id="targetList"></div>
+      <div class="bar"><span id="progress"></span></div>
+      <p class="muted" id="progressText">0 targets completed</p>
+    </section>
+
+    <section class="card" id="timetable">
+      <h2>📚 Timetable</h2>
+      <input id="subject" placeholder="Subject or task">
+      <label class="muted" for="startTime">Start time</label>
+      <input id="startTime" type="time">
+      <label class="muted" for="endTime">End time</label>
+      <input id="endTime" type="time">
+      <button class="full" onclick="addSlot()">Add schedule</button>
+      <div id="slotList"></div>
+    </section>
+
+    <section class="card">
+      <h2>📅 Exam Countdown</h2>
+      <input id="examName" placeholder="Exam name">
+      <input id="examDate" type="date">
+      <button class="full" onclick="saveExam()">Save exam</button>
+      <div class="big" id="countdown">—</div>
+      <p class="muted" id="examLabel">Choose your exam date.</p>
+    </section>
+
+    <section class="card">
+      <h2>💡 Motivation</h2>
+      <p id="quote">Small steps every day create big results.</p>
+      <button class="full" onclick="newQuote()">New motivation</button>
+    </section>
+
+    <section class="card" id="settings">
+      <h2>⚙️ Focus Settings</h2>
+      <label class="task"><input type="checkbox" id="soundSetting"> Timer complete par sound</label>
+      <label class="task"><input type="checkbox" id="reminderSetting"> Reminder permission</label>
+      <button class="full" onclick="saveSettings()">Save settings</button>
+      <p class="muted" id="settingsStatus">Settings are stored on this device.</p>
+      <p class="muted">Note: A website cannot block other iPad apps or people system-wide. Use iPad Screen Time for app limits.</p>
+    </section>
+  </div>
+</main>
+<footer>ANKIT TIME · Focus today. Own tomorrow.</footer>
+<script>
+const $=id=>document.getElementById(id);
+let remaining=1500, timerId=null, targets=[], slots=[];
+function showClock(){
+  const m=Math.floor(remaining/60),s=remaining%60;
+  $('clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+}
+function startTimer(){
+  if(timerId) return;
+  if(remaining<=0) remaining=Math.max(1,Number($('minutes').value)||25)*60;
+  $('timerStatus').textContent='Focus time — you can do it!';
+  timerId=setInterval(()=>{
+    remaining--;showClock();
+    if(remaining<=0){
+      clearInterval(timerId);timerId=null;
+      $('timerStatus').textContent='Session complete. Great work!';
+      if($('soundSetting').checked){
+        try{new AudioContext().resume()}catch(e){}
+        alert('Focus session complete!');
+      }
+    }
+  },1000);
+}
+function pauseTimer(){
+  clearInterval(timerId);timerId=null;
+  $('timerStatus').textContent='Paused. Resume when ready.';
+}
+function resetTimer(){
+  pauseTimer();
+  remaining=Math.max(1,Number($('minutes').value)||25)*60;
+  showClock();$('timerStatus').textContent='Ready when you are.';
+}
+$('minutes').addEventListener('change',resetTimer);
+function speakGreeting(){
+  if(!('speechSynthesis' in window)){alert('Speech is not supported in this browser.');return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance('Bolo Ankit ji, aaj kya padhna hai?');
+  u.lang='hi-IN';speechSynthesis.speak(u);
+}
+function go(id){$(id).scrollIntoView({behavior:'smooth',block:'start'})}
+function addTarget(){
+  const value=$('targetInput').value.trim();if(!value)return;
+  targets.push({text:value,done:false});$('targetInput').value='';
+  renderTargets();saveData();
+}
+function renderTargets(){
+  $('targetList').innerHTML='';
+  targets.forEach((t,i)=>{
+    const label=document.createElement('label');label.className='task';
+    const cb=document.createElement('input');cb.type='checkbox';cb.checked=t.done;
+    cb.onchange=()=>{targets[i].done=cb.checked;renderTargets();saveData()};
+    const text=document.createElement('span');text.textContent=t.text;
+    label.append(cb,text);$('targetList').append(label);
+  });
+  const done=targets.filter(t=>t.done).length;
+  $('progress').style.width=(targets.length?done/targets.length*100:0)+'%';
+  $('progressText').textContent=done+' of '+targets.length+' targets completed';
+}
+function addSlot(){
+  const name=$('subject').value.trim(),start=$('startTime').value,end=$('endTime').value;
+  if(!name||!start||!end){alert('Subject, start time aur end time bharo.');return}
+  if(end<=start){alert('End time, start time ke baad hona chahiye.');return}
+  slots.push({name,start,end});$('subject').value='';
+  renderSlots();saveData();
+}
+function renderSlots(){
+  $('slotList').innerHTML='';
+  slots.forEach((s,i)=>{
+    const row=document.createElement('div');row.className='task';
+    const text=document.createElement('span');text.textContent=s.start+'–'+s.end+' · '+s.name;
+    const del=document.createElement('button');del.className='secondary';del.textContent='×';
+    del.onclick=()=>{slots.splice(i,1);renderSlots();saveData()};
+    row.append(text,del);$('slotList').append(row);
+  });
+}
+function saveExam(){
+  const date=$('examDate').value,name=$('examName').value.trim();
+  if(!date||!name){alert('Exam name aur date select karo.');return}
+  localStorage.setItem('ankitExam',JSON.stringify({date,name}));updateCountdown();
+}
+function updateCountdown(){
+  const raw=localStorage.getItem('ankitExam');if(!raw)return;
+  const exam=JSON.parse(raw);$('examLabel').textContent=exam.name;
+  const diff=new Date(exam.date+'T00:00:00')-new Date(new Date().toDateString());
+  const days=Math.ceil(diff/86400000);
+  $('countdown').textContent=days>0?days+' days':days===0?'Today!':'Date passed';
+}
+const quotes=[
+  'Small steps every day create big results.',
+  'Your future is built by what you do today.',
+  'Focus on progress, not perfection.',
+  'One focused hour can change your day.',
+  'Consistency turns goals into achievements.'
+];
+function newQuote(){$('quote').textContent=quotes[Math.floor(Math.random()*quotes.length)]}
+function saveSettings(){
+  localStorage.setItem('ankitSettings',JSON.stringify({
+    sound:$('soundSetting').checked,reminder:$('reminderSetting').checked
+  }));
+  $('settingsStatus').textContent='Settings saved on this device.';
+  if($('reminderSetting').checked&&'Notification' in window){
+    Notification.requestPermission().then(p=>{
+      $('settingsStatus').textContent=p==='granted'?'Notification permission granted.':'Notification permission not granted.';
+    });
+  }
+}
+function saveData(){
+  localStorage.setItem('ankitTargets',JSON.stringify(targets));
+  localStorage.setItem('ankitSlots',JSON.stringify(slots));
+}
+try{
+  targets=JSON.parse(localStorage.getItem('ankitTargets')||'[]');
+  slots=JSON.parse(localStorage.getItem('ankitSlots')||'[]');
+  const settings=JSON.parse(localStorage.getItem('ankitSettings')||'{}');
+  $('soundSetting').checked=!!settings.sound;
+  $('reminderSetting').checked=!!settings.reminder;
+  const exam=JSON.parse(localStorage.getItem('ankitExam')||'null');
+  if(exam){$('examName').value=exam.name;$('examDate').value=exam.date}
+}catch(e){}
+renderTargets();renderSlots();showClock();updateCountdown();
+</script>
+</body>
+</html>
