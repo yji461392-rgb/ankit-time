@@ -1,4 +1,4 @@
-
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +15,7 @@ button,input,select{font:inherit}button{cursor:pointer;color:inherit}
 header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}
 .brand{font-size:22px;font-weight:950;letter-spacing:2px}.brand span{color:var(--cyan)}
 .rank{border:1px solid var(--gold);padding:7px 10px;color:#e8d39c;font-size:10px}
-nav{display:flex;gap:7px;overflow-x:auto;padding:5px 1px 14px}
+nav{display:flex;gap:7px;overflow-x:auto;padding:5px 1px 14px;scrollbar-width:thin}
 nav button{flex-shrink:0;border:1px solid #53646a;background:linear-gradient(#26343a,#111a20);padding:11px 13px;min-height:44px;border-radius:7px;font-weight:800}
 nav button.active{color:#a4faff;border-color:var(--cyan);background:linear-gradient(#225461,#10242b);box-shadow:0 0 12px #53e8f433}
 .page{display:none;padding:12px;border:2px solid #526a72;border-radius:18px;background:linear-gradient(135deg,#17272fef,#0b1319f8);box-shadow:0 0 20px #0008;min-height:300px}
@@ -54,7 +54,7 @@ input[type=checkbox]{width:18px;height:18px;min-height:18px;accent-color:#53e8f4
 .checkline label{display:flex;align-items:center;gap:5px}
 .badge{font-size:10px;color:#c9faff;border:1px solid #397c85;background:#10242a;padding:4px 7px;white-space:nowrap}
 .reward{font-size:11px;color:#e5cd8e;margin-top:7px}
-.timer{text-align:center;font-size:clamp(42px,10vw,68px);font-weight:950;letter-spacing:3px;color:#8ff6ff;text-shadow:0 0 17px #53e8f455;margin:20px 0}
+.timer{text-align:center;font-size:clamp(42px,10vw,68px);font-weight:950;letter-spacing:3px;color:#8ff6ff;text-shadow:0 0 17px #53e8f455;margin:20px 0;font-variant-numeric:tabular-nums}
 .quick-times{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin:10px 0}
 .quick-times button{min-height:46px;padding:8px 3px;border:1px solid #526e76;border-radius:7px;color:#d8faff;background:linear-gradient(145deg,#203840,#0b171d);font-weight:800}
 .quick-times button.selected{border-color:var(--cyan);background:linear-gradient(#217d8c,#12404d);box-shadow:0 0 12px #53e8f455}
@@ -111,7 +111,11 @@ footer{text-align:center;color:#8a9b9e;font-size:10px;letter-spacing:2px;padding
 <div class="panel"><h2>◈ DAILY STUDY TARGET</h2><div class="xpbar"><div class="xpfill" id="studyFill"></div></div><div class="xpmeta"><span id="studyMeta">0 / 180 minutes</span><span id="studyPercent">0%</span></div><button class="btn" onclick="showPage('focus')">ENTER FOCUS CHAMBER</button></div>
 </section>
 
-<section class="page" id="missions"><div class="panel"><h2>⚔ QUEST BOARD</h2><p>Complete quests to earn 10 XP each.</p><div class="row"><label>Quest name<input id="taskInput" placeholder="Complete Physics lecture"></label><button class="btn blue" onclick="addTask()">＋ ADD QUEST</button></div><div id="taskList"></div></div><div class="panel"><h2>◈ DAILY TARGET</h2><label>Study minutes per day<input id="dailyGoal" type="number" min="1" max="1440" value="180"></label><button class="btn" onclick="saveGoal()">SAVE TARGET</button></div></section>
+<section class="page" id="missions">
+<div class="panel"><h2>⚔ QUEST BOARD</h2><p>Complete quests to earn 10 XP each.</p>
+<div class="row"><label>Quest name<input id="taskInput" placeholder="Complete Physics lecture"></label><button class="btn blue" onclick="addTask()">＋ ADD QUEST</button></div><div id="taskList"></div></div>
+<div class="panel"><h2>◈ DAILY TARGET</h2><label>Study minutes per day<input id="dailyGoal" type="number" min="1" max="1440" value="180"></label><button class="btn" onclick="saveGoal()">SAVE TARGET</button></div>
+</section>
 
 <section class="page" id="focus">
 <div class="panel"><h2>◷ FOCUS CHAMBER</h2><p>Choose your study duration, then start the timer.</p>
@@ -137,7 +141,7 @@ footer{text-align:center;color:#8a9b9e;font-size:10px;letter-spacing:2px;padding
 
 <section class="page" id="plan"><div class="panel"><h2>▦ WEEKLY COMMAND PLAN</h2><label>Day<select id="planDay"><option>Monday</option><option>Tuesday</option><option>Wednesday</option><option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option></select></label><label>Time<input id="planTime" placeholder="6:00 PM"></label><label>Study activity<input id="planActivity" placeholder="Maths PYQs"></label><button class="btn blue" onclick="addPlan()">＋ ADD SCHEDULE</button><div id="planList"></div></div></section>
 
-<section class="page" id="exam"><div class="panel"><h2>⌛ EXAM COUNTDOWN</h2><label>Exam name<input id="examName" placeholder="JEE Main 2027"></label><label>Exam date and time<input id="examDate" type="datetime-local"></label><button class="btn blue" onclick="saveExam()">SAVE COUNTDOWN</button><div class="timer" id="examDisplay" style="font-size:clamp(25px,7vw,42px)">SET EXAM DATE</div><p id="examCaption">Your countdown will appear here.</p></div></section>
+<section class="page" id="exam"><div class="panel"><h2>⌛ EXAM COUNTDOWN</h2><label>Exam name<input id="examName" placeholder="JEE Main 2027"></label><label>Exam date and time<input id="examDate" type="datetime-local"></label><button class="btn blue" onclick="saveExam()">SAVE COUNTDOWN</button><div class="timer" id="examDisplay" style="font-size:clamp(25px,7vw,42px);letter-spacing:1px">SET EXAM DATE</div><p id="examCaption">Your countdown will appear here.</p></div></section>
 
 <section class="page" id="evolution"><div class="panel"><h2>✧ HUNTER EVOLUTION</h2><p>Every XP milestone unlocks a new rank and reward.</p><div id="levelsList"></div></div></section>
 <footer>ANKIT TIME · TRAIN YOUR MIND · BUILD YOUR FUTURE</footer>
@@ -145,9 +149,11 @@ footer{text-align:center;color:#8a9b9e;font-size:10px;letter-spacing:2px;padding
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
+"use strict";
 const KEY="ankitTimeData";
 const blank=()=>({xp:0,streak:0,lastDay:"",goal:180,exam:{name:"",date:""},tasks:[],sessions:[],checks:{},mocks:[],goals:[],plans:[],rewardedTasks:[],rewardedChecks:{},dailyBonusDay:""});
-let s;try{s={...blank(),...JSON.parse(localStorage.getItem(KEY)||"{}")}}catch(e){s=blank()}
+let s;
+try{s={...blank(),...JSON.parse(localStorage.getItem(KEY)||"{}")}}catch(e){s=blank()}
 for(const k of ["tasks","sessions","mocks","goals","plans","rewardedTasks"])if(!Array.isArray(s[k]))s[k]=[];
 s.checks=s.checks||{};s.rewardedChecks=s.rewardedChecks||{};s.exam=s.exam||{name:"",date:""};
 let timer=null,remaining=1500,running=false,timerSubject="Physics";
@@ -199,12 +205,52 @@ function renderGoals(){$("goalList").innerHTML=s.goals.map(g=>`<div class="item 
 function addPlan(){let a=$("planActivity").value.trim();if(!a)return toast("Enter an activity.");s.plans.push({id:Date.now(),day:$("planDay").value,time:$("planTime").value.trim(),activity:a});$("planActivity").value="";persist()}
 function renderPlans(){let h="";["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"].forEach(d=>{let arr=s.plans.filter(p=>p.day===d);if(arr.length)h+=`<h3>◆ ${d.toUpperCase()}</h3>`+arr.map(p=>`<div class="item"><div class="itemtop"><strong>${esc(p.time||"No time")} · ${esc(p.activity)}</strong><button class="btn red" onclick="deleteFrom(s.plans,'${p.id}')">REMOVE</button></div></div>`).join("")});$("planList").innerHTML=h||'<div class="empty">Add your weekly schedule.</div>'}
 function saveExam(){s.exam={name:$("examName").value.trim(),date:$("examDate").value};persist();toast("Exam countdown saved")}
-function renderExam(){$("examName").value=s.exam.name||"";$("examDate").value=s.exam.date||"";let d=s.exam.date?new Date(s.exam.date).getTime():0;if(!d||!Number.isFinite(d)){$("examDisplay").textContent="SET EXAM DATE";$("examCaption").textContent="Save your exam date to start the countdown.";return}let dif=d-Date.now();if(dif<=0){$("examDisplay").textContent="EXAM TIME REACHED";$("examCaption").textContent=s.exam.name||"Your exam";return}$("examDisplay").textContent=Math.floor(dif/86400000)+"d "+Math.floor(dif%86400000/3600000)+"h "+Math.floor(dif%3600000/60000)+"m";$("examCaption").textContent=(s.exam.name||"Your exam")+" · remaining"}
+
+/* UPDATED: Exam countdown now displays seconds and refreshes every second. */
+function renderExam(){
+  $("examName").value=s.exam.name||"";
+  $("examDate").value=s.exam.date||"";
+  const target=s.exam.date?new Date(s.exam.date).getTime():0;
+
+  if(!target||!Number.isFinite(target)){
+    $("examDisplay").textContent="SET EXAM DATE";
+    $("examCaption").textContent="Save your exam date to start the countdown.";
+    return;
+  }
+
+  const diff=target-Date.now();
+
+  if(diff<=0){
+    $("examDisplay").textContent="EXAM TIME REACHED";
+    $("examCaption").textContent=s.exam.name||"Your exam";
+    return;
+  }
+
+  const days=Math.floor(diff/86400000);
+  const hours=Math.floor((diff%86400000)/3600000);
+  const minutes=Math.floor((diff%3600000)/60000);
+  const seconds=Math.floor((diff%60000)/1000);
+
+  $("examDisplay").textContent=`${days}d ${hours}h ${minutes}m ${seconds}s`;
+  $("examCaption").textContent=(s.exam.name||"Your exam")+" · remaining";
+}
+
 function renderLevels(){let lv=currentLevel();$("levelsList").innerHTML=levels.map((l,i)=>`<div class="item levelcard ${i<=lv?"unlocked":""} ${i===lv?"current":""}"><div class="levelTop"><strong>LEVEL ${i+1} · ${l.name}</strong><span class="badge">${l.xp} XP</span></div><div class="reward">✦ REWARD: ${l.reward}</div><p>${l.power} · ${i<lv?"✓ UNLOCKED":i===lv?"★ CURRENT RANK":"🔒 "+Math.max(0,l.xp-s.xp)+" XP TO UNLOCK"}</p></div>`).join("")}
 function renderAll(){renderHUD();renderTasks();renderSessions();renderSyllabus();renderMocks();renderGoals();renderPlans();renderExam();renderLevels()}
+
 renderAll();
-remaining=1500;displayTimer();
-setInterval(()=>{if(s.exam&&s.exam.date)renderExam()},30000);
+remaining=Number($("timerMinutes").value||25)*60;
+displayTimer();
+
+/* Update the exam display every second. */
+setInterval(()=>{
+  if(s.exam&&s.exam.date)renderExam();
+},1000);
+
+/* Refresh countdown when the page becomes visible again. */
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden)renderExam();
+});
 </script>
 </body>
 </html>
