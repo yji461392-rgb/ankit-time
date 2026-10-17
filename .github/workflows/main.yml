@@ -15,7 +15,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Setup Java
+      - name: Setup Java 21
         uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -31,21 +31,35 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y android-sdk
 
-      - name: Create test web app
+      - name: Create ANKIT TIME test app
         run: |
           mkdir www
-          echo '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="background:#080e13;color:#53e8f4;font-family:Arial;text-align:center"><h1>ANKIT TIME</h1><p>Test APK</p></body></html>' > www/index.html
+          echo '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="background:#080e13;color:#53e8f4;font-family:Arial;text-align:center;padding:40px"><h1>ANKIT TIME</h1><p>Test APK</p></body></html>' > www/index.html
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
           npx cap init "ANKIT TIME" "com.ankittime.study" --web-dir www
           npx cap add android
           npx cap sync android
 
-      - name: Build debug APK
+      - name: Align Kotlin dependencies
+        run: |
+          cat > kotlin-fix.gradle <<'EOF'
+          allprojects {
+              configurations.configureEach {
+                  resolutionStrategy {
+                      force 'org.jetbrains.kotlin:kotlin-stdlib:1.8.22'
+                      force 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.8.22'
+                      force 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.8.22'
+                  }
+              }
+          }
+          EOF
+
+      - name: Build APK
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleDebug
+          ./gradlew -I ../kotlin-fix.gradle assembleDebug
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
