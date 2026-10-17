@@ -3,240 +3,82 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ANKIT TIME — Premium Study Space</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#071b1b">
+<title>ANKIT TIME — Focus Studio</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#06101f;color:#f5f8ff;font-family:Arial,sans-serif}
-header{padding:22px 18px;background:#0a1b32;border-bottom:1px solid #24415f}
-.logo{font-size:26px;font-weight:900;letter-spacing:1px}
-.logo span{color:#52c5ff}
-.tag{font-size:11px;color:#9db7d4;letter-spacing:2px;margin-top:7px}
-main{max-width:900px;margin:auto;padding:18px}
-.hero{min-height:230px;padding:25px;border-radius:22px;background:linear-gradient(135deg,#153d66,#071426 75%);border:1px solid #28547c;display:flex;flex-direction:column;justify-content:center}
-.eyebrow{font-size:11px;color:#66d2ff;letter-spacing:2px}
-h1{font-size:34px;line-height:1.1;margin:14px 0}
-p{color:#b8c9df;line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:16px}
-.card{background:#0b1b30;border:1px solid #1c3654;border-radius:18px;padding:17px;min-width:0}
-.card h2{font-size:16px;margin:0 0 10px}
-.big{font-size:29px;font-weight:bold;color:#63ceff;margin:10px 0}
-button,input,select{font:inherit}
-button{background:#3bb9f5;color:#061426;border:0;border-radius:11px;padding:12px 14px;font-weight:bold;cursor:pointer}
-button.secondary{background:#173653;color:#eaf7ff;border:1px solid #315777}
-input,select{width:100%;padding:12px;border-radius:10px;border:1px solid #294663;background:#071426;color:white;margin:6px 0 10px}
-.full{width:100%}
-.task{display:flex;align-items:center;gap:9px;margin:12px 0;color:#d9e7f8}
-.task input{width:auto;margin:0}
-.bar{height:8px;background:#1a2f48;border-radius:9px;overflow:hidden}
-.bar span{display:block;height:100%;width:0;background:#4ac7ff;transition:width .3s}
-.muted{font-size:12px;color:#93abc8}
-nav{display:flex;gap:8px;overflow:auto;padding:15px 0}
-nav button{white-space:nowrap}
-section{scroll-margin-top:12px;margin-top:18px}
-footer{text-align:center;color:#7894b5;font-size:12px;padding:28px 10px}
-@media(min-width:650px){.hero{padding:38px}h1{font-size:44px}.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(max-width:360px){.grid{grid-template-columns:1fr}h1{font-size:29px}}
+:root{--bg:#071b1b;--panel:rgba(27,49,53,.78);--panel2:rgba(40,68,70,.72);--accent:#35d6a0;--glow:#91ffe0;--text:#f5fffc;--muted:#a6c1bf;--border:rgba(209,255,244,.17);--orange:#ff771d;--shadow:rgba(28,210,155,.17)}
+body[data-theme="blue"]{--bg:#071629;--panel:rgba(24,42,63,.82);--panel2:rgba(34,57,81,.76);--accent:#54a8ff;--glow:#a4e6ff;--muted:#a8c1d9;--border:rgba(164,230,255,.18);--shadow:rgba(65,145,255,.2)}
+body[data-theme="purple"]{--bg:#150d25;--panel:rgba(41,29,60,.82);--panel2:rgba(60,42,82,.76);--accent:#bd83ff;--glow:#e3c9ff;--muted:#c3afd9;--border:rgba(227,201,255,.18);--shadow:rgba(170,100,255,.2)}
+body[data-theme="gold"]{--bg:#17150f;--panel:rgba(47,41,29,.84);--panel2:rgba(64,54,35,.77);--accent:#e4bb60;--glow:#ffedb4;--muted:#d0c4a6;--border:rgba(255,237,180,.19);--shadow:rgba(228,187,96,.16)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;min-height:100vh;padding-bottom:105px;transition:background .25s}body:before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(ellipse at 90% 10%,var(--shadow),transparent 48%),radial-gradient(ellipse at 0% 75%,var(--shadow),transparent 45%);pointer-events:none}
+button,input{font:inherit}button{cursor:pointer;color:inherit}button:focus-visible,input:focus-visible{outline:2px solid var(--glow);outline-offset:3px}.app{max-width:900px;margin:auto;padding:17px 14px}.top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;gap:12px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(145deg,var(--glow),var(--accent));color:#05231d;font-weight:950;font-size:22px;box-shadow:0 0 25px var(--shadow),inset 0 1px 1px #ffffff80}.brand h1{font-size:17px;letter-spacing:1.7px;margin:0}.brand p{font-size:10px;color:var(--muted);margin:4px 0 0;letter-spacing:1.3px}.round{width:43px;height:43px;border-radius:50%;border:1px solid var(--border);background:var(--panel);font-size:19px}.screen{display:none;animation:enter .22s ease}.screen.active{display:block}@keyframes enter{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.glass{background:linear-gradient(135deg,rgba(255,255,255,.105),transparent 42%),linear-gradient(145deg,var(--panel2),var(--panel));border:1px solid var(--border);border-top-color:rgba(255,255,255,.3);border-radius:23px;backdrop-filter:blur(24px) saturate(145%);-webkit-backdrop-filter:blur(24px) saturate(145%);box-shadow:0 18px 45px rgba(0,0,0,.22),inset 0 1px 0 rgba(255,255,255,.08),0 0 25px var(--shadow);transition:transform .22s,border-color .22s,box-shadow .22s}.hero{padding:22px;margin-bottom:14px;min-height:185px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 90% 0%,var(--shadow),transparent 55%),linear-gradient(135deg,var(--panel2),var(--panel))}.hero:after{content:"";position:absolute;width:130px;height:130px;border:1px solid var(--border);border-radius:50%;right:-55px;top:-50px;box-shadow:0 0 0 20px var(--shadow),0 0 0 42px var(--border);pointer-events:none}.mini{font-size:10px;color:var(--glow);letter-spacing:1.8px;text-transform:uppercase}h2{font-size:clamp(24px,6vw,32px);line-height:1.14;margin:10px 0}h2 span{color:var(--glow)}h3{font-size:15px;margin:0}p{line-height:1.5}.muted{color:var(--muted);font-size:12px}.hero p{font-size:12px;color:var(--muted);max-width:430px;margin-bottom:0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{padding:16px;min-width:0}.wide{grid-column:1/-1}.cardhead{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px}.badge{font-size:10px;padding:7px 9px;border:1px solid var(--border);border-radius:20px;color:var(--glow);white-space:nowrap}.timer-card{padding:20px 16px;text-align:center}.timer-title{text-align:left}.ring{--progress:0deg;width:220px;height:220px;max-width:75vw;max-height:75vw;border-radius:50%;margin:20px auto;display:grid;place-items:center;position:relative;background:conic-gradient(var(--orange) 0deg,var(--accent) var(--progress),rgba(255,255,255,.16) var(--progress),rgba(255,255,255,.16) 360deg);filter:drop-shadow(0 0 18px var(--shadow))}.ring:before{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--bg);border:1px solid var(--border);box-shadow:inset 0 0 25px var(--shadow)}.ring:after{content:"";position:absolute;inset:18px;border-radius:50%;border:1px solid var(--border)}.ring-inner{position:relative;z-index:1}.time{font-size:clamp(39px,10vw,51px);font-weight:750;letter-spacing:-2px;font-variant-numeric:tabular-nums}.ring-label{font-size:11px;color:var(--muted);margin-top:5px;letter-spacing:1px}.timer-controls{display:flex;justify-content:center;align-items:center;gap:12px;margin:12px 0}.control{width:43px;height:43px;border-radius:50%;border:1px solid var(--border);background:var(--panel2);font-size:17px}.control.play{width:53px;height:53px;background:linear-gradient(145deg,#ff9a35,var(--orange));border:0;color:white;box-shadow:0 0 22px rgba(255,119,29,.3),inset 0 1px 2px #ffffff70}.primary{background:linear-gradient(135deg,#ff9a35,var(--orange));border:0;color:#fff;font-weight:750}.btn{border:1px solid var(--border);border-radius:13px;padding:11px 13px;background:var(--panel2);font-size:12px;font-weight:650;transition:transform .18s,filter .18s}.btn:active,.round:active,.control:active{transform:scale(.97)}.btn:hover{filter:brightness(1.12)}.btn.primary{background:linear-gradient(135deg,var(--glow),var(--accent));color:var(--bg);border:0;box-shadow:0 6px 22px var(--shadow)}.btn.full{width:100%}.btnrow{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.presets{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:15px 0}.preset{border:1px solid var(--border);border-radius:14px;padding:13px 4px;background:rgba(255,255,255,.04);transition:.2s}.preset strong{display:block;font-size:25px}.preset span{display:block;font-size:10px;color:var(--muted);margin-top:4px}.preset.active{background:var(--shadow);border-color:var(--accent);box-shadow:inset 0 0 20px var(--shadow),0 0 15px var(--shadow);transform:translateY(-2px)}.bar{height:7px;background:rgba(255,255,255,.1);border-radius:30px;overflow:hidden;margin:12px 0}.bar>div{height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--glow));border-radius:30px;transition:width .3s}.statrow{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.stat{padding:14px;border:1px solid var(--border);border-radius:17px;background:rgba(255,255,255,.035)}.stat strong{display:block;font-size:25px;margin-bottom:5px}.stat span{font-size:10px;color:var(--muted)}.field{display:flex;gap:8px;margin:10px 0}input{min-width:0;width:100%;padding:12px;border-radius:12px;background:rgba(3,13,15,.4);border:1px solid var(--border);color:var(--text);transition:border-color .2s,box-shadow .2s}input::placeholder{color:var(--muted)}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--shadow);outline:none}input[type=checkbox]{width:18px;height:18px;accent-color:var(--accent)}.list{display:grid;gap:8px;margin-top:12px}.item{display:flex;align-items:center;gap:10px;border:1px solid var(--border);border-radius:13px;padding:11px;background:rgba(255,255,255,.035);min-width:0}.itemtext{flex:1;min-width:0;font-size:12px;overflow-wrap:anywhere}.item.done .itemtext{text-decoration:line-through;color:var(--muted)}.delete{border:0;background:transparent;color:var(--muted);font-size:20px}.chart{height:145px;display:flex;align-items:end;justify-content:space-around;gap:8px;padding:12px 4px 0;border-bottom:1px solid var(--border)}.chartcol{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:end;height:100%;gap:6px;min-width:0}.chartbar{width:min(32px,75%);min-height:4px;border-radius:9px 9px 3px 3px;background:linear-gradient(180deg,#ffd94c,var(--orange));box-shadow:0 0 18px rgba(255,153,30,.22)}.chartcol span{font-size:10px;color:var(--muted)}.chartcol small{font-size:9px;color:var(--muted)}.bottom{position:fixed;z-index:5;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:3px;padding:9px 8px calc(9px + env(safe-area-inset-bottom));background:rgba(5,13,17,.88);border:1px solid var(--border);border-bottom:0;border-radius:22px 22px 0 0;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 -8px 35px rgba(0,0,0,.2)}.bottom button{flex:1;max-width:135px;min-width:0;border:0;background:transparent;color:var(--muted);font-size:10px;border-radius:12px;padding:8px 2px}.bottom button span{display:block;font-size:19px;margin-bottom:3px}.bottom button.active{color:var(--glow);background:var(--shadow)}.bottom .add{flex:0 0 52px;width:52px;height:52px;border-radius:50%;background:linear-gradient(145deg,#ff9a35,var(--orange));color:#fff;font-size:29px;box-shadow:0 0 25px rgba(255,119,29,.4),inset 0 1px 2px #ffffff70;margin-top:-23px;border:3px solid var(--bg)}.themegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.themebtn{padding:12px;border:1px solid var(--border);border-radius:15px;background:var(--panel);text-align:left;transition:transform .2s,border-color .2s}.themebtn.selected{outline:2px solid var(--accent)}.swatches{display:flex;gap:5px;margin-top:9px}.swatches i{display:block;width:20px;height:20px;border-radius:7px}.note{font-size:10px;line-height:1.6;color:var(--muted)}footer{text-align:center;font-size:10px;color:var(--muted);letter-spacing:1.5px;padding:28px 0}
+@media(min-width:650px){.app{padding:24px}.grid{gap:16px}.hero{padding:27px;min-height:215px}.card{padding:20px}.timer-card{padding:25px}.ring{width:245px;height:245px}.glass:hover{border-color:rgba(255,255,255,.25)}}@media(max-width:360px){.app{padding:12px 10px}.card{padding:12px}.grid{gap:9px}.ring{width:190px;height:190px}.brand h1{font-size:15px}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
-<body>
-<header>
-  <div class="logo">ANKIT <span>TIME</span></div>
-  <div class="tag">YOUR TIME · YOUR VISION · YOUR FUTURE</div>
-</header>
+<body data-theme="green">
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">A</div><div><h1>ANKIT TIME</h1><p>FOCUS & PERFORMANCE</p></div></div><button class="round" onclick="openPage('settings')" aria-label="Settings">⚙</button></header>
 <main>
-  <section class="hero" id="home">
-    <div class="eyebrow">WELCOME TO ANKIT TIME</div>
-    <h1>Bolo Ankit ji,<br>aaj kya padhna hai?</h1>
-    <p>Plan your day. Focus on your goals. Build your future.</p>
-    <button onclick="speakGreeting()">🔊 Suno welcome message</button>
-  </section>
+<section class="screen active" id="home">
+<div class="glass hero"><div class="mini">✦ YOUR PERSONAL FOCUS SPACE</div><h2>Welcome to your<br><span>focus journey.</span></h2><p>Small steps. Clear goals. Better days. Make your study time count.</p><div class="btnrow"><span class="badge" id="today">TODAY</span><span class="badge">● YOUR SPACE, YOUR PACE</span></div></div>
+<div class="grid">
+<div class="glass card wide"><div class="cardhead"><h3>Today's Focus</h3><span class="badge" id="focusBadge">READY</span></div><div class="ring" id="homeRing"><div class="ring-inner"><div class="time" id="homeTime">25:00</div><div class="ring-label">FOCUS SESSION</div></div></div><div class="timer-controls"><button class="control" onclick="resetTimer()" aria-label="Reset">↻</button><button class="control play" id="homePlay" onclick="toggleTimer()" aria-label="Start or pause">▶</button><button class="control" onclick="nextPreset()" aria-label="Next duration">↗</button></div><p class="muted" style="text-align:center">Stay present. One task at a time.</p><button class="btn full" onclick="openPage('focus')">Open timer settings →</button></div>
+<div class="glass card"><div class="cardhead"><h3>Daily Targets</h3><span>✓</span></div><div style="font-size:30px;font-weight:750" id="homeTargetPct">0%</div><div class="bar"><div id="homeTargetBar"></div></div><p class="muted" id="homeTargetText">0 targets completed</p><button class="btn full" onclick="openPage('targets')">View targets</button></div>
+<div class="glass card"><div class="cardhead"><h3>Study Streak</h3><span>✦</span></div><div style="font-size:30px;font-weight:750"><span id="streak">0</span><span style="font-size:13px;color:var(--muted)"> days</span></div><p class="muted">Build consistency one day at a time.</p><button class="btn full" onclick="openPage('progress')">View progress</button></div>
+<div class="glass card wide"><div class="cardhead"><h3>Focus Journey</h3><span class="badge">LAST 7 DAYS</span></div><p class="muted">Your daily focus time</p><div class="chart" id="homeChart"></div></div>
+<div class="glass card wide"><div class="cardhead"><h3>Upcoming Exam</h3><span class="badge">COUNTDOWN</span></div><div style="font-size:33px;font-weight:800" id="homeExamDays">—</div><p class="muted" id="homeExamName">Add your exam date in Future.</p><button class="btn full" onclick="openPage('future')">Manage exam & goals</button></div>
+</div></section>
+<section class="screen" id="focus"><div class="glass hero"><div class="mini">TIMER SETTINGS</div><h2>Find your<br><span>flow state.</span></h2><p>Set your session, focus deeply and take a break when you're done.</p></div><div class="glass timer-card"><div class="timer-title row"><h3>Session timer</h3><span class="badge" id="timerState">READY</span></div><div class="presets"><button class="preset active" data-min="25" onclick="chooseDuration(25)"><strong>25</strong><span>Focus min</span></button><button class="preset" data-min="5" onclick="chooseDuration(5)"><strong>5</strong><span>Short break</span></button><button class="preset" data-min="15" onclick="chooseDuration(15)"><strong>15</strong><span>Long break</span></button></div><div class="ring" id="focusRing"><div class="ring-inner"><div class="time" id="focusTime">25:00</div><div class="ring-label">TIME REMAINING</div></div></div><div class="timer-controls"><button class="control" onclick="resetTimer()" aria-label="Reset">↻</button><button class="control play" id="focusPlay" onclick="toggleTimer()" aria-label="Start or pause">▶</button><button class="control" onclick="nextPreset()" aria-label="Next duration">↗</button></div><p class="muted">Keep this page open during a session for best results.</p></div><div class="grid" style="margin-top:12px"><div class="glass card"><h3>Focus completed</h3><p style="font-size:29px;font-weight:800" id="focusTotal">0 min</p><span class="muted">Today</span></div><div class="glass card"><h3>Study streak</h3><p style="font-size:29px;font-weight:800"><span id="focusStreak">0</span> days</p><span class="muted">Current streak</span></div></div></section>
+<section class="screen" id="targets"><div class="glass hero"><div class="mini">DAILY GOALS</div><h2>Your goals.<br><span>Your progress.</span></h2><p>Add tasks and tick them off as you finish them.</p></div><div class="glass card"><div class="cardhead"><h3>Today's targets</h3><span class="badge" id="targetCount">0 / 0</span></div><div class="field"><input id="targetInput" maxlength="100" placeholder="Add a study target"><button class="btn primary" onclick="addTarget()">＋ Add</button></div><div class="bar"><div id="targetBar"></div></div><p class="muted" id="targetSummary">Nothing added yet.</p><div class="list" id="targetList"></div></div></section>
 
-  <nav>
-    <button onclick="go('timer')">Focus Timer</button>
-    <button onclick="go('targets')">Daily Targets</button>
-    <button onclick="go('timetable')">Timetable</button>
-    <button onclick="go('settings')">Settings</button>
-  </nav>
+<section class="screen" id="planner"><div class="glass hero"><div class="mini">YOUR DAILY ROUTINE</div><h2>Make a plan.<br><span>Own your day.</span></h2><p>Organise subjects and study sessions in one place.</p></div><div class="glass card"><h3>Add a study session</h3><div class="field"><input type="time" id="slotTime" aria-label="Session time"><input id="slotSubject" maxlength="70" placeholder="Subject or task"></div><button class="btn primary full" onclick="addSlot()">＋ Add to timetable</button><h3 style="margin-top:23px">Your timetable</h3><div class="list" id="slotList"></div></div></section>
+<section class="screen" id="progress"><div class="glass hero"><div class="mini">YOUR PROGRESS</div><h2>Every session<br><span>moves you forward.</span></h2><p>See your recorded focus time for the last seven days.</p></div><div class="grid"><div class="glass card"><h3>Today's focus</h3><p style="font-size:29px;font-weight:800" id="progressToday">0 min</p></div><div class="glass card"><h3>Weekly total</h3><p style="font-size:29px;font-weight:800" id="weeklyTotal">0 min</p></div><div class="glass card wide"><div class="cardhead"><h3>Focus by day</h3><span class="badge">7 DAYS</span></div><div class="chart" id="progressChart"></div><div class="list" id="weekList"></div></div><div class="glass card wide"><h3>Study streak</h3><p style="font-size:32px;font-weight:800"><span id="progressStreak">0</span> days</p><p class="muted">A day counts when you complete a focus session.</p></div></div></section>
+<section class="screen" id="future"><div class="glass hero"><div class="mini">LOOK AHEAD</div><h2>Your next milestone<br><span>starts today.</span></h2><p>Keep important dates and long-term goals close.</p></div><div class="glass card"><h3>Exam countdown</h3><div class="field"><input id="examName" maxlength="70" placeholder="Exam name"><input id="examDate" type="date" aria-label="Exam date"></div><button class="btn primary full" onclick="saveExam()">Save exam</button><div class="statrow" style="margin-top:13px"><div class="stat"><strong id="examDays">—</strong><span>DAYS LEFT</span></div><div class="stat"><strong id="examDateLabel">—</strong><span>EXAM DATE</span></div></div><p class="muted" id="examLabel">No exam saved.</p></div><div class="glass card" style="margin-top:12px"><h3>Future goals</h3><p class="muted">Record the milestones you want to reach.</p><div class="field"><input id="goalInput" maxlength="120" placeholder="Write a future goal"><button class="btn primary" onclick="addGoal()">＋ Add</button></div><div class="list" id="goalList"></div></div></section>
+<section class="screen" id="settings"><div class="glass hero"><div class="mini">PERSONALISE YOUR SPACE</div><h2>Your style.<br><span>Your focus.</span></h2><p>Switch between four premium colour themes.</p></div><div class="glass card"><h3>Colour themes</h3><p class="muted">Your choice is saved in this browser.</p><div class="themegrid" style="margin-top:15px"><button class="themebtn" data-themebtn="green" onclick="setTheme('green')">Emerald Green<div class="swatches"><i style="background:#071b1b"></i><i style="background:#35d6a0"></i><i style="background:#91ffe0"></i></div></button><button class="themebtn" data-themebtn="blue" onclick="setTheme('blue')">Midnight Blue<div class="swatches"><i style="background:#071629"></i><i style="background:#54a8ff"></i><i style="background:#a4e6ff"></i></div></button><button class="themebtn" data-themebtn="purple" onclick="setTheme('purple')">Royal Purple<div class="swatches"><i style="background:#150d25"></i><i style="background:#bd83ff"></i><i style="background:#e3c9ff"></i></div></button><button class="themebtn" data-themebtn="gold" onclick="setTheme('gold')">Black & Gold<div class="swatches"><i style="background:#17150f"></i><i style="background:#e4bb60"></i><i style="background:#ffedb4"></i></div></button></div></div><div class="glass card" style="margin-top:12px"><h3>Backup your data</h3><p class="muted">Export a copy of your targets, timetable, goals and focus history.</p><button class="btn full" onclick="exportData()">Export data backup</button><p class="note">Data is saved locally in this browser; it won't automatically sync to another device.</p></div></section>
+</main><footer>ANKIT TIME · FOCUS TODAY. OWN TOMORROW.</footer>
+</div>
+<nav class="bottom"><button data-page="home" class="active" onclick="openPage('home')"><span>⌂</span>Home</button><button data-page="planner" onclick="openPage('planner')"><span>▦</span>Plan</button><button class="add" onclick="quickAdd()" aria-label="Quick add">+</button><button data-page="focus" onclick="openPage('focus')"><span>◷</span>Focus</button><button data-page="progress" onclick="openPage('progress')"><span>◉</span>Progress</button></nav>
 
-  <div class="grid">
-    <section class="card" id="timer">
-      <h2>⏱ Focus Timer</h2>
-      <div class="big" id="clock">25:00</div>
-      <label class="muted" for="minutes">Focus minutes</label>
-      <input id="minutes" type="number" min="1" max="180" value="25">
-      <button onclick="startTimer()">Start</button>
-      <button class="secondary" onclick="pauseTimer()">Pause</button>
-      <button class="secondary" onclick="resetTimer()">Reset</button>
-      <p class="muted" id="timerStatus">Ready when you are.</p>
-    </section>
-
-    <section class="card" id="targets">
-      <h2>🎯 Daily Targets</h2>
-      <input id="targetInput" placeholder="e.g. Physics: 20 questions">
-      <button class="full" onclick="addTarget()">Add target</button>
-      <div id="targetList"></div>
-      <div class="bar"><span id="progress"></span></div>
-      <p class="muted" id="progressText">0 targets completed</p>
-    </section>
-
-    <section class="card" id="timetable">
-      <h2>📚 Timetable</h2>
-      <input id="subject" placeholder="Subject or task">
-      <label class="muted" for="startTime">Start time</label>
-      <input id="startTime" type="time">
-      <label class="muted" for="endTime">End time</label>
-      <input id="endTime" type="time">
-      <button class="full" onclick="addSlot()">Add schedule</button>
-      <div id="slotList"></div>
-    </section>
-
-    <section class="card">
-      <h2>📅 Exam Countdown</h2>
-      <input id="examName" placeholder="Exam name">
-      <input id="examDate" type="date">
-      <button class="full" onclick="saveExam()">Save exam</button>
-      <div class="big" id="countdown">—</div>
-      <p class="muted" id="examLabel">Choose your exam date.</p>
-    </section>
-
-    <section class="card">
-      <h2>💡 Motivation</h2>
-      <p id="quote">Small steps every day create big results.</p>
-      <button class="full" onclick="newQuote()">New motivation</button>
-    </section>
-
-    <section class="card" id="settings">
-      <h2>⚙️ Focus Settings</h2>
-      <label class="task"><input type="checkbox" id="soundSetting"> Timer complete par sound</label>
-      <label class="task"><input type="checkbox" id="reminderSetting"> Reminder permission</label>
-      <button class="full" onclick="saveSettings()">Save settings</button>
-      <p class="muted" id="settingsStatus">Settings are stored on this device.</p>
-      <p class="muted">Note: A website cannot block other iPad apps or people system-wide. Use iPad Screen Time for app limits.</p>
-    </section>
-  </div>
-</main>
-<footer>ANKIT TIME · Focus today. Own tomorrow.</footer>
 <script>
+"use strict";
 const $=id=>document.getElementById(id);
-let remaining=1500, timerId=null, targets=[], slots=[];
-function showClock(){
-  const m=Math.floor(remaining/60),s=remaining%60;
-  $('clock').textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-}
-function startTimer(){
-  if(timerId) return;
-  if(remaining<=0) remaining=Math.max(1,Number($('minutes').value)||25)*60;
-  $('timerStatus').textContent='Focus time — you can do it!';
-  timerId=setInterval(()=>{
-    remaining--;showClock();
-    if(remaining<=0){
-      clearInterval(timerId);timerId=null;
-      $('timerStatus').textContent='Session complete. Great work!';
-      if($('soundSetting').checked){
-        try{new AudioContext().resume()}catch(e){}
-        alert('Focus session complete!');
-      }
-    }
-  },1000);
-}
-function pauseTimer(){
-  clearInterval(timerId);timerId=null;
-  $('timerStatus').textContent='Paused. Resume when ready.';
-}
-function resetTimer(){
-  pauseTimer();
-  remaining=Math.max(1,Number($('minutes').value)||25)*60;
-  showClock();$('timerStatus').textContent='Ready when you are.';
-}
-$('minutes').addEventListener('change',resetTimer);
-function speakGreeting(){
-  if(!('speechSynthesis' in window)){alert('Speech is not supported in this browser.');return}
-  speechSynthesis.cancel();
-  const u=new SpeechSynthesisUtterance('Bolo Ankit ji, aaj kya padhna hai?');
-  u.lang='hi-IN';speechSynthesis.speak(u);
-}
-function go(id){$(id).scrollIntoView({behavior:'smooth',block:'start'})}
-function addTarget(){
-  const value=$('targetInput').value.trim();if(!value)return;
-  targets.push({text:value,done:false});$('targetInput').value='';
-  renderTargets();saveData();
-}
-function renderTargets(){
-  $('targetList').innerHTML='';
-  targets.forEach((t,i)=>{
-    const label=document.createElement('label');label.className='task';
-    const cb=document.createElement('input');cb.type='checkbox';cb.checked=t.done;
-    cb.onchange=()=>{targets[i].done=cb.checked;renderTargets();saveData()};
-    const text=document.createElement('span');text.textContent=t.text;
-    label.append(cb,text);$('targetList').append(label);
-  });
-  const done=targets.filter(t=>t.done).length;
-  $('progress').style.width=(targets.length?done/targets.length*100:0)+'%';
-  $('progressText').textContent=done+' of '+targets.length+' targets completed';
-}
-function addSlot(){
-  const name=$('subject').value.trim(),start=$('startTime').value,end=$('endTime').value;
-  if(!name||!start||!end){alert('Subject, start time aur end time bharo.');return}
-  if(end<=start){alert('End time, start time ke baad hona chahiye.');return}
-  slots.push({name,start,end});$('subject').value='';
-  renderSlots();saveData();
-}
-function renderSlots(){
-  $('slotList').innerHTML='';
-  slots.forEach((s,i)=>{
-    const row=document.createElement('div');row.className='task';
-    const text=document.createElement('span');text.textContent=s.start+'–'+s.end+' · '+s.name;
-    const del=document.createElement('button');del.className='secondary';del.textContent='×';
-    del.onclick=()=>{slots.splice(i,1);renderSlots();saveData()};
-    row.append(text,del);$('slotList').append(row);
-  });
-}
-function saveExam(){
-  const date=$('examDate').value,name=$('examName').value.trim();
-  if(!date||!name){alert('Exam name aur date select karo.');return}
-  localStorage.setItem('ankitExam',JSON.stringify({date,name}));updateCountdown();
-}
-function updateCountdown(){
-  const raw=localStorage.getItem('ankitExam');if(!raw)return;
-  const exam=JSON.parse(raw);$('examLabel').textContent=exam.name;
-  const diff=new Date(exam.date+'T00:00:00')-new Date(new Date().toDateString());
-  const days=Math.ceil(diff/86400000);
-  $('countdown').textContent=days>0?days+' days':days===0?'Today!':'Date passed';
-}
-const quotes=[
-  'Small steps every day create big results.',
-  'Your future is built by what you do today.',
-  'Focus on progress, not perfection.',
-  'One focused hour can change your day.',
-  'Consistency turns goals into achievements.'
-];
-function newQuote(){$('quote').textContent=quotes[Math.floor(Math.random()*quotes.length)]}
-function saveSettings(){
-  localStorage.setItem('ankitSettings',JSON.stringify({
-    sound:$('soundSetting').checked,reminder:$('reminderSetting').checked
-  }));
-  $('settingsStatus').textContent='Settings saved on this device.';
-  if($('reminderSetting').checked&&'Notification' in window){
-    Notification.requestPermission().then(p=>{
-      $('settingsStatus').textContent=p==='granted'?'Notification permission granted.':'Notification permission not granted.';
-    });
-  }
-}
-function saveData(){
-  localStorage.setItem('ankitTargets',JSON.stringify(targets));
-  localStorage.setItem('ankitSlots',JSON.stringify(slots));
-}
-try{
-  targets=JSON.parse(localStorage.getItem('ankitTargets')||'[]');
-  slots=JSON.parse(localStorage.getItem('ankitSlots')||'[]');
-  const settings=JSON.parse(localStorage.getItem('ankitSettings')||'{}');
-  $('soundSetting').checked=!!settings.sound;
-  $('reminderSetting').checked=!!settings.reminder;
-  const exam=JSON.parse(localStorage.getItem('ankitExam')||'null');
-  if(exam){$('examName').value=exam.name;$('examDate').value=exam.date}
-}catch(e){}
-renderTargets();renderSlots();showClock();updateCountdown();
+const read=(k,f)=>{try{const v=localStorage.getItem(k);return v===null?f:JSON.parse(v)}catch(e){return f}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+const todayKey=()=>{const d=new Date();return d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0")};
+let targets=read("at_targets",[]),slots=read("at_slots",[]),goals=read("at_goals",[]),exam=read("at_exam",null),history=read("at_history",{}),theme=read("at_theme","green"),preset=25,remaining=1500,running=false,timerId=null,lastTick=0;
+function openPage(id){document.querySelectorAll(".screen").forEach(x=>x.classList.toggle("active",x.id===id));document.querySelectorAll(".bottom [data-page]").forEach(x=>x.classList.toggle("active",x.dataset.page===id));window.scrollTo({top:0,behavior:"smooth"});if(id==="progress")renderProgress()}
+function setTheme(name){if(!["green","blue","purple","gold"].includes(name))return;theme=name;document.body.dataset.theme=name;save("at_theme",name);document.querySelectorAll("[data-themebtn]").forEach(b=>b.classList.toggle("selected",b.dataset.themebtn===name))}
+function fmt(s){s=Math.max(0,Math.floor(s));return String(Math.floor(s/60)).padStart(2,"0")+":"+String(s%60).padStart(2,"0")}
+function chooseDuration(m){if(running)pauseTimer();preset=m;remaining=m*60;document.querySelectorAll(".preset").forEach(b=>b.classList.toggle("active",Number(b.dataset.min)===m));updateTimer()}
+function nextPreset(){const list=[25,5,15],i=list.indexOf(preset);chooseDuration(list[(i+1)%list.length])}
+function updateTimer(){const text=fmt(remaining),deg=((preset*60-remaining)/(preset*60))*360;$("focusTime").textContent=text;$("homeTime").textContent=text;["focusRing","homeRing"].forEach(id=>$(id).style.setProperty("--progress",deg+"deg"));$("focusBadge").textContent=running?"RUNNING":remaining===0?"COMPLETE":"READY";$("timerState").textContent=running?"RUNNING":remaining===0?"COMPLETE":"READY";$("focusPlay").textContent=running?"Ⅱ":"▶";$("homePlay").textContent=running?"Ⅱ":"▶"}
+function toggleTimer(){running?pauseTimer():startTimer()}
+function startTimer(){if(running)return;if(remaining<=0)remaining=preset*60;running=true;lastTick=Date.now();updateTimer();timerId=setInterval(()=>{const now=Date.now(),elapsed=Math.floor((now-lastTick)/1000);if(elapsed>0){remaining=Math.max(0,remaining-elapsed);lastTick+=elapsed*1000;updateTimer()}if(remaining===0){pauseTimer();history[todayKey()]=(history[todayKey()]||0)+preset;save("at_history",history);renderAll();alert("Focus session complete! Take a short break.")}},300)}
+function pauseTimer(){running=false;if(timerId)clearInterval(timerId);timerId=null;updateTimer()}
+function resetTimer(){pauseTimer();remaining=preset*60;updateTimer()}
+function streak(){let d=new Date(),n=0;if(!(history[todayKey()]>0))d.setDate(d.getDate()-1);for(let i=0;i<370;i++){const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");if(history[k]>0){n++;d.setDate(d.getDate()-1)}else break}return n}
+function addTarget(){const el=$("targetInput"),text=el.value.trim();if(!text)return;targets.push({id:Date.now()+Math.random(),text,done:false});el.value="";save("at_targets",targets);renderAll()}
+function delTarget(id){targets=targets.filter(x=>x.id!==id);save("at_targets",targets);renderAll()}
+function toggleTarget(id,v){const x=targets.find(t=>t.id===id);if(x)x.done=v;save("at_targets",targets);renderAll()}
+function addSlot(){const time=$("slotTime").value,subject=$("slotSubject").value.trim();if(!time||!subject){alert("Enter a time and subject.");return}slots.push({id:Date.now()+Math.random(),time,subject});slots.sort((a,b)=>a.time.localeCompare(b.time));$("slotSubject").value="";save("at_slots",slots);renderAll()}
+function delSlot(id){slots=slots.filter(x=>x.id!==id);save("at_slots",slots);renderAll()}
+function addGoal(){const el=$("goalInput"),text=el.value.trim();if(!text)return;goals.push({id:Date.now()+Math.random(),text,done:false});el.value="";save("at_goals",goals);renderAll()}
+function delGoal(id){goals=goals.filter(x=>x.id!==id);save("at_goals",goals);renderAll()}
+function toggleGoal(id,v){const x=goals.find(g=>g.id===id);if(x)x.done=v;save("at_goals",goals);renderAll()}
+function item(text,checked,onchange,ondelete){const row=document.createElement("div");row.className="item"+(checked?" done":"");const cb=document.createElement("input");cb.type="checkbox";cb.checked=checked;cb.addEventListener("change",()=>onchange(cb.checked));const label=document.createElement("div");label.className="itemtext";label.textContent=text;const del=document.createElement("button");del.className="delete";del.textContent="×";del.setAttribute("aria-label","Delete");del.onclick=ondelete;row.append(cb,label,del);return row}
+function renderTargets(){const done=targets.filter(x=>x.done).length,p=targets.length?Math.round(done/targets.length*100):0;$("targetList").replaceChildren();targets.forEach(t=>$("targetList").append(item(t.text,t.done,v=>toggleTarget(t.id,v),()=>delTarget(t.id))));$("targetCount").textContent=done+" / "+targets.length;$("targetSummary").textContent=targets.length?done+" completed out of "+targets.length:"Nothing added yet.";$("targetBar").style.width=p+"%";$("homeTargetBar").style.width=p+"%";$("homeTargetPct").textContent=p+"%";$("homeTargetText").textContent=done+" targets completed"}
+function renderSlots(){$("slotList").replaceChildren();slots.forEach(s=>$("slotList").append(item(s.time+" · "+s.subject,false,()=>{},()=>delSlot(s.id))))}
+function renderGoals(){$("goalList").replaceChildren();goals.forEach(g=>$("goalList").append(item(g.text,g.done,v=>toggleGoal(g.id,v),()=>delGoal(g.id))))}
+function saveExam(){const name=$("examName").value.trim(),date=$("examDate").value;if(!name||!date){alert("Enter the exam name and date.");return}if(date<todayKey()){alert("Choose today or a future date.");return}exam={name,date};save("at_exam",exam);renderExam()}
+function renderExam(){if(!exam){$("homeExamDays").textContent="—";$("homeExamName").textContent="Add your exam date in Future.";$("examDays").textContent="—";$("examDateLabel").textContent="—";$("examLabel").textContent="No exam saved.";return}const days=Math.round((new Date(exam.date+"T00:00:00")-new Date(todayKey()+"T00:00:00"))/86400000),val=days===0?"Today":days+" days";$("homeExamDays").textContent=val;$("homeExamName").textContent=exam.name;$("examDays").textContent=days===0?"Today":days;$("examDateLabel").textContent=exam.date;$("examLabel").textContent=exam.name+" · "+(days===0?"Your exam is today":days+" days remaining");$("examName").value=exam.name;$("examDate").value=exam.date}
+function renderChart(id){const el=$(id);el.replaceChildren();const days=["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],data=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);const k=d.getFullYear()+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+String(d.getDate()).padStart(2,"0");data.push({day:days[d.getDay()],mins:history[k]||0})}const max=Math.max(60,...data.map(x=>x.mins));data.forEach(d=>{const col=document.createElement("div");col.className="chartcol";const value=document.createElement("small");value.textContent=d.mins?d.mins+"m":"";const bar=document.createElement("div");bar.className="chartbar";bar.style.height=Math.max(4,d.mins/max*82)+"px";const label=document.createElement("span");label.textContent=d.day;col.append(value,bar,label);el.append(col)});return data}
+function renderProgress(){const data=renderChart("progressChart");$("weekList").replaceChildren();let total=0;data.forEach(d=>{total+=d.mins;const row=document.createElement("div");row.className="item";const a=document.createElement("div");a.className="itemtext";a.textContent=d.day;const b=document.createElement("strong");b.textContent=d.mins+" min";b.style.color="var(--glow)";row.append(a,b);$("weekList").append(row)});$("weeklyTotal").textContent=total+" min"}
+function renderAll(){renderTargets();renderSlots();renderGoals();renderExam();const mins=history[todayKey()]||0;$("focusTotal").textContent=mins+" min";$("progressToday").textContent=mins+" min";$("streak").textContent=streak();$("focusStreak").textContent=streak();$("progressStreak").textContent=streak();renderChart("homeChart");renderProgress();updateTimer()}
+function quickAdd(){const active=document.querySelector(".screen.active")?.id;if(active==="planner"){openPage("planner");$("slotSubject").focus()}else if(active==="future"){openPage("future");$("goalInput").focus()}else{openPage("targets");$("targetInput").focus()}}
+function exportData(){const data={targets,slots,goals,exam,history,theme,exportedAt:new Date().toISOString()},blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="ankit-time-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
+$("targetInput").addEventListener("keydown",e=>{if(e.key==="Enter")addTarget()});$("slotSubject").addEventListener("keydown",e=>{if(e.key==="Enter")addSlot()});$("goalInput").addEventListener("keydown",e=>{if(e.key==="Enter")addGoal()});$("today").textContent=new Date().toLocaleDateString(undefined,{weekday:"short",month:"short",day:"numeric"}).toUpperCase();setTheme(theme);renderAll();
 </script>
 </body>
 </html>
