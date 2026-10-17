@@ -31,15 +31,42 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y android-sdk
 
-      - name: Create ANKIT TIME test app
+      - name: Install Capacitor
         run: |
-          mkdir www
-          echo '<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"></head><body style="background:#080e13;color:#53e8f4;font-family:Arial;text-align:center;padding:40px"><h1>ANKIT TIME</h1><p>Test APK</p></body></html>' > www/index.html
           npm init -y
           npm install @capacitor/core @capacitor/cli @capacitor/android
+
+      - name: Download website
+        run: |
+          mkdir www
+          curl -fL "https://yji461392-rgb.github.io/ankit-time/" -o /tmp/site.html
+          cp /tmp/site.html www/index.html
+
+      - name: Configure Android app
+        run: |
           npx cap init "ANKIT TIME" "com.ankittime.study" --web-dir www
           npx cap add android
           npx cap sync android
+
+      - name: Prepare app icon
+        run: |
+          sudo apt-get install -y imagemagick
+          mkdir -p android/app/src/main/res/mipmap-mdpi
+          mkdir -p android/app/src/main/res/mipmap-hdpi
+          mkdir -p android/app/src/main/res/mipmap-xhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxhdpi
+          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
+          for size in 48 72 96 144 192; do
+            case $size in
+              48) folder=mipmap-mdpi ;;
+              72) folder=mipmap-hdpi ;;
+              96) folder=mipmap-xhdpi ;;
+              144) folder=mipmap-xxhdpi ;;
+              192) folder=mipmap-xxxhdpi ;;
+            esac
+            convert app-icon.jpg -resize ${size}x${size}^ -gravity center -extent ${size}x${size} android/app/src/main/res/$folder/ic_launcher.png
+          done
+          sed -i 's|android:icon="@mipmap/ic_launcher"|android:icon="@mipmap/ic_launcher"|' android/app/src/main/AndroidManifest.xml
 
       - name: Align Kotlin dependencies
         run: |
