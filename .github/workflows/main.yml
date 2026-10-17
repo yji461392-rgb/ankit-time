@@ -38,9 +38,9 @@ jobs:
 
       - name: Download website
         run: |
-          mkdir www
-          curl -fL "https://yji461392-rgb.github.io/ankit-time/" -o /tmp/site.html
-          cp /tmp/site.html www/index.html
+          mkdir -p www
+          curl -fL "https://yji461392-rgb.github.io/ankit-time/" -o www/index.html
+          test -s www/index.html
 
       - name: Configure Android app
         run: |
@@ -48,25 +48,51 @@ jobs:
           npx cap add android
           npx cap sync android
 
-      - name: Prepare app icon
+      - name: Prepare launcher icons
         run: |
           sudo apt-get install -y imagemagick
-          mkdir -p android/app/src/main/res/mipmap-mdpi
-          mkdir -p android/app/src/main/res/mipmap-hdpi
-          mkdir -p android/app/src/main/res/mipmap-xhdpi
-          mkdir -p android/app/src/main/res/mipmap-xxhdpi
-          mkdir -p android/app/src/main/res/mipmap-xxxhdpi
-          for size in 48 72 96 144 192; do
-            case $size in
-              48) folder=mipmap-mdpi ;;
-              72) folder=mipmap-hdpi ;;
-              96) folder=mipmap-xhdpi ;;
-              144) folder=mipmap-xxhdpi ;;
-              192) folder=mipmap-xxxhdpi ;;
-            esac
-            convert app-icon.jpg -resize ${size}x${size}^ -gravity center -extent ${size}x${size} android/app/src/main/res/$folder/ic_launcher.png
+          test -f app-icon.jpg
+
+          mkdir -p android/app/src/main/res/drawable
+          mkdir -p android/app/src/main/res/values
+          mkdir -p android/app/src/main/res/mipmap-anydpi-v26
+
+          for spec in "mdpi:48" "hdpi:72" "xhdpi:96" "xxhdpi:144" "xxxhdpi:192"; do
+            density="${spec%%:*}"
+            size="${spec##*:}"
+            folder="android/app/src/main/res/mipmap-${density}"
+            mkdir -p "$folder"
+
+            convert app-icon.jpg \
+              -resize "${size}x${size}^" \
+              -gravity center \
+              -extent "${size}x${size}" \
+              "$folder/ic_launcher.png"
+
+            cp "$folder/ic_launcher.png" "$folder/ic_launcher_round.png"
           done
-          sed -i 's|android:icon="@mipmap/ic_launcher"|android:icon="@mipmap/ic_launcher"|' android/app/src/main/AndroidManifest.xml
+
+          convert app-icon.jpg \
+            -resize 432x432^ \
+            -gravity center \
+            -extent 432x432 \
+            android/app/src/main/res/drawable/ankit_icon.png
+
+          cat > android/app/src/main/res/values/launcher_colors.xml <<'EOF'
+          <resources>
+              <color name="launcher_background">#080E13</color>
+          </resources>
+          EOF
+
+          cat > android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml <<'EOF'
+          <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+              <background android:drawable="@color/launcher_background"/>
+              <foreground android:drawable="@drawable/ankit_icon"/>
+          </adaptive-icon>
+          EOF
+
+          cp android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml \
+             android/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml
 
       - name: Align Kotlin dependencies
         run: |
